@@ -10,14 +10,26 @@ export default {
   },
   data() {
     return {
-      store,
+      store
+    }
+  },
+  created() {
+    this.getMovies()
+  },
+  methods: {
+    getMovies(movie){
+      let url = `${this.store.endpoint}${this.store.searchMovie}${this.store.keyApi}`
+      axios.get(`${url}&query=${movie}`).then((res) => {
+       this.store.movieArray = res.data.results
+       console.log(this.store.movieArray)
+      })
     }
   }
 }
 </script>
 
 <template>
-<Header />
+<Header @getMovie="getMovies" />
 <Main />
 </template>
 <style lang="scss">
