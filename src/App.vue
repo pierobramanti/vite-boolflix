@@ -1,13 +1,18 @@
-<template lang="">
-  <div>
-    
-  </div>
-</template>
 <script>
+import { store } from './store';
+import axios from 'axios';
 export default {
-  
+  data() {
+    return {
+      store,
+      axios
+    }
+  }
 }
 </script>
-<style lang="">
-  
+
+<template>
+</template>
+<style lang="scss">
+@use "./assets/style/generals.scss";
 </style>
