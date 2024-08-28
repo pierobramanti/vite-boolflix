@@ -15,11 +15,15 @@ export default {
   },
 
   methods: {
-    getMovies(movie){
-      let url = `${store.endpoint}${store.searchMovie}${store.keyApi}`
-      axios.get(`${url}&query=${movie}`).then((res) => {
-        store.movieArray = res.data.results
-        console.log(res.data.results)
+    getShows(showName){
+      let urlMovies = `${store.endpoint}${store.searchMovie}${store.keyApi}`
+      let urlSeries = `${store.endpoint}${store.searchTv}${store.keyApi}`
+      axios.get(`${urlMovies}&query=${showName}`).then((res) => {
+       store.movieArray = res.data.results
+      })
+      axios.get(`${urlSeries}&query=${showName}`).then((res) => {
+        store.seriesArray = res.data.results
+        console.log(store.seriesArray)
       })
     }
   }
@@ -27,8 +31,8 @@ export default {
 </script>
 
 <template>
-<Header @getMovie="getMovies" />
-<Main :movie="store.movieArray"/>
+  <Header @getMovie="getShows"/>
+  <Main :movies="store.movieArray" :series="store.seriesArray"/>
 </template>
 <style lang="scss">
 @use "./assets/style/generals.scss";
