@@ -19,7 +19,7 @@ export default {
       let url = `${store.endpoint}${store.searchMovie}${store.keyApi}`
       axios.get(`${url}&query=${movie}`).then((res) => {
         store.movieArray = res.data.results
-        console.log(store.movieArray)
+        console.log(res.data.results)
       })
     }
   }
